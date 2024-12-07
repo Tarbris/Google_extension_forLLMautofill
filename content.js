@@ -1,32 +1,30 @@
 // Define default values for input fields
-const inputValues = [
-  "ABCD", 
-  "111@tohoku.com",
-  "Address Line 1",
-  "City",
-  "State",
-];
+const inputValues = {
+  family_name: "Tanaka",
+  family_name_kana: "タナカ",
+  given_name: "Taro",
+  given_name_kana: "タロウ",
+  mail: "taro.tanaka@example.com",
+  phone: "080-1234-5678",
+  postcode: "123-4567",
+  province: "Tokyo",
+  city: "Shibuya",
+  add_detailed: "1-2-3 Shibuya",
+  username: "tanakataro"
+};
 
 // Fill all input fields with default values
 function autoFillInputs() {
-  const inputs = Array.from(document.querySelectorAll("input[type='text']"));
-  if (inputs.length === 0) {
-    console.warn("No input fields found on this page.");
-    return;
-  }
-
-  inputs.forEach((input, index) => {
-    if (index < inputValues.length) {
-      // Handle disabled or readonly inputs
-      input.removeAttribute('disabled');
-      input.removeAttribute('readonly');
-
-      // Fill input and trigger events
-      input.value = inputValues[index];
+  for (const [name, value] of Object.entries(inputValues)) {
+    const input = document.querySelector(`input[name="${name}"]`);
+    if (input) {
+      input.value = value;
       input.dispatchEvent(new Event('input', { bubbles: true }));
       input.dispatchEvent(new Event('change', { bubbles: true }));
     }
-  });
+  }
+
+  
 }
 
 // Run the function on page load
