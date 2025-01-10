@@ -2,6 +2,7 @@
 const inputValues = {
   family_name: "Tanaka",
   family_name_kana: "タナカ",
+  middle_name: " ",
   given_name: "Taro",
   given_name_kana: "タロウ",
   mail: "taro.tanaka@example.com",
